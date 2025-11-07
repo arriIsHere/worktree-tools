@@ -10,3 +10,7 @@ rm -rf $WORKTREE
 
 git worktree prune
 git branch -D $BRANCH
+
+# Update the workspace file
+jq --arg WORKTREE "$WORKTREE" 'del(.folders[] | select(.path == $WORKTREE)) | {folders: .[]}' > root.code-workspace.tmp
+mv root.code-workspace.tmp root.code-workspace
