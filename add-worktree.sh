@@ -4,7 +4,8 @@ set -e
 BRANCH=$1
 WORKTREE=${2:~BRANCH}
 
-SHARED_CONFIG_DIR=.shared-config
+#Include common config
+. $(dirname $0)/config.sh
 
 git worktree add $WORKTREE -b $BRANCH
 

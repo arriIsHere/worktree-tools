@@ -3,7 +3,9 @@ set -e
 
 WORKTREE=$1
 BRANCH=$(cd $WORKTREE; git branch --show-current)
-SHARED_CONFIG_DIR=.commonfiles
+
+#Include common config
+. $(dirname $0)/config.sh
 
 # Delete the directory
 rm -rf $WORKTREE
