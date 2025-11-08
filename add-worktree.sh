@@ -4,12 +4,16 @@ set -e
 BRANCH=$1
 WORKTREE=${2:~BRANCH}
 
+COMMON_FILES_DIR=$(git config worktree-tools.common-files)
+WORKSPACE_FILE=$(git config worktree-tools.workspace-file)
+
 git worktree add $WORKTREE -b $BRANCH
 
 jq --arg WORKTREE "$WORKTREE" --arg BRANCH "$BRANCH" \
-  '{folders: [ .folders[], {name: $BRANCH, path: $WORKSPACE } ] }' .code-workspace > .code-workspace.tmp
+  '{folders: [ .folders[], {name: $BRANCH, path: $WORKSPACE } ] }' $WORKSPACE_FILE > $WORKSPACE_FILE.tmp
+mv $WORKSPACE_FILE.tmp $WORKSPACE_FILE
 
-cp -lfR 
-cp -lf
+cp -lfR $COMMON_FILES_DIR/* $WORKTREE/
+cp -lf $COMMON_FILES_DIR/.* $WORKTREE/
 
 #Setup scripts

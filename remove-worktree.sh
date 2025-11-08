@@ -4,6 +4,9 @@ set -e
 WORKTREE=$1
 BRANCH=$(cd $WORKTREE; git branch --show-current)
 
+COMMON_FILES_DIR=$(git config worktree-tools.common-files)
+WORKSPACE_FILE=$(git config worktree-tools.workspace-file)
+
 # Delete the directory
 rm -rf $WORKTREE
 
@@ -11,5 +14,5 @@ git worktree prune
 git branch -D $BRANCH
 
 # Update the workspace file
-jq --arg WORKTREE "$WORKTREE" 'del(.folders[] | select(.path == $WORKTREE)) | {folders: .[]}' > root.code-workspace.tmp
-mv root.code-workspace.tmp root.code-workspace
+jq --arg WORKTREE "$WORKTREE" 'del(.folders[] | select(.path == $WORKTREE)) | {folders: .[]}' $WORKSPACE_FILE > $WORKSPACE_FILE.tmp
+mv $WORKSPACE_FILE.tmp $WORKSPACE_FILE
