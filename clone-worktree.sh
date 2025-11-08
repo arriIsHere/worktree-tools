@@ -24,8 +24,8 @@ MAIN_BRANCH=$(git branch --show-current)
 git worktree add "$MAIN_BRANCH"
 
 # configure values as set
-git config worktree-tools.common-files "$COMMON_FILES_DIR"
-git config worktree-tools.workspace-file "$WORKSPACE_FILE"
+git config worktree-tools.common-files "$(realpath $COMMON_FILES_DIR)"
+git config worktree-tools.workspace-file "$(realpath $WORKSPACE_FILE)"
 
 # Setup files
 mkdir $COMMON_FILES_DIR
