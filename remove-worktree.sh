@@ -4,9 +4,6 @@ set -e
 WORKTREE=$1
 BRANCH=$(cd $WORKTREE; git branch --show-current)
 
-#Include common config
-. $(dirname $0)/config.sh
-
 # Delete the directory
 rm -rf $WORKTREE
 
