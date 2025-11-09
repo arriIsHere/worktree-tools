@@ -30,7 +30,5 @@ git config worktree-tools.workspace-file "$(realpath $WORKSPACE_FILE)"
 # Setup files
 mkdir $COMMON_FILES_DIR
 
-create_config $WORKSPACE_FILE $COMMON_FILES_DIR > $REPO_CONFIG_FILE
-
 jq -n --arg WORKTREE "$MAIN_BRANCH" --arg BRANCH "$MAIN_BRANCH" \
   '{folders: [{name: $BRANCH, path: $WORKSPACE} ] }' > $WORKSPACE_FILE
