@@ -17,7 +17,9 @@ jq --arg WORKTREE "$WORKTREE" --arg BRANCH "$BRANCH" \
   '{folders: [ .folders[], {name: $BRANCH, path: $WORKTREE } ] }' $WORKSPACE_FILE > $WORKSPACE_FILE.tmp
 mv $WORKSPACE_FILE.tmp $WORKSPACE_FILE
 
-cp -lfR $COMMON_FILES_DIR/* $WORKTREE/
-cp -lf $COMMON_FILES_DIR/.* $WORKTREE/
+if [ -n "$(ls -A $COMMON_FILES_DIR)" ]; then
+  cp -lfR $COMMON_FILES_DIR/* $WORKTREE/
+  cp -lf $COMMON_FILES_DIR/.* $WORKTREE/
+fi
 
 ./setup.sh $BRANCH $WORKTREE
