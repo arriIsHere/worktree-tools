@@ -5,6 +5,7 @@ LATEST_DIR=$DEST_DIR/latest
 RUN_DIR=$DEST_DIR/bin
 
 # Set up worktree dir
+mkdir $DEST_DIR
 cd $DEST_DIR
 
 git clone --bare $REPO_URL .bare
@@ -29,5 +30,5 @@ for SCRIPT in $RUN_DIR/*.sh; do
 	chmod +x $SCRIPT
 
 	SCRIPT_NAME=$(basename $SCRIPT .sh)
-	git config ---global alias."$SCRIPT_NAME" "!$SCRIPT"
+	git config --global alias."$SCRIPT_NAME" "!$SCRIPT"
 done
