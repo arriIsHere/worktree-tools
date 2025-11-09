@@ -2,13 +2,13 @@
 set -e
 
 WORKTREE=$1
-BRANCH=$(cd $WORKTREE; git branch --show-current)
 
 # the "common git dir" will be .bare with using the clone script
 ROOT_DIR=$(realpath $(git rev-parse --git-common-dir)/../)
 cd $ROOT_DIR
 
-COMMON_FILES_DIR=$(git config worktree-tools.common-files)
+BRANCH=$(cd $WORKTREE; git branch --show-current)
+
 WORKSPACE_FILE=$(git config worktree-tools.workspace-file)
 
 # Delete the directory
