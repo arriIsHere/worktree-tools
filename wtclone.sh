@@ -30,5 +30,22 @@ git config worktree-tools.workspace-file "$(realpath $WORKSPACE_FILE)"
 # Setup files
 mkdir $COMMON_FILES_DIR
 
+cat > setup.sh << EOF
+#!/usr/bin/env bash
+set -e
+
+# This script gets run each time you checkout a new worktree right after the common files all get 
+# Linked. It is passed two arguments shown below
+
+# Branch this worktree is checking out
+\$BRANCH=\$1
+
+# the path to the worktree, relative to the directory calling this script
+\$WORKTREE=\$2
+
+EOF
+
+chmod +x setup.sh
+
 jq -n --arg WORKTREE "$MAIN_BRANCH" --arg BRANCH "$MAIN_BRANCH" \
   '{folders: [{name: $BRANCH, path: $WORKSPACE} ] }' > $WORKSPACE_FILE
