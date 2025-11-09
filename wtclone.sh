@@ -39,10 +39,10 @@ set -e
 # Linked. It is passed two arguments shown below
 
 # Branch this worktree is checking out
-\$BRANCH=\$1
+BRANCH=\$1
 
 # the path to the worktree, relative to the directory calling this script
-\$WORKTREE=\$2
+WORKTREE=\$2
 
 EOF
 
