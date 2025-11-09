@@ -2,7 +2,7 @@
 set -e
 
 BRANCH=$1
-WORKTREE=${2:-BRANCH}
+WORKTREE=${2:-$BRANCH}
 
 # the "common git dir" will be .bare with using the clone script
 ROOT_DIR=$(realpath $(git rev-parse --git-common-dir)../)
