@@ -4,7 +4,7 @@ set -e
 REPO_URL=$1
 REPO_BASE=${REPO_URL##*/}
 BASENAME=${REPO_BASE%.*}
-DIRNAME=${2:~BASENAME}
+DIRNAME=${2:-BASENAME}
 
 # TODO: add flags to set these values
 COMMON_FILES_DIR=.common_files
