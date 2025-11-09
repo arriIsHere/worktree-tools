@@ -49,4 +49,4 @@ EOF
 chmod +x setup.sh
 
 jq -n --arg WORKTREE "$MAIN_BRANCH" --arg BRANCH "$MAIN_BRANCH" \
-  '{folders: [{name: $BRANCH, path: $WORKSPACE} ] }' > $WORKSPACE_FILE
+  '{folders: [{name: $BRANCH, path: $WORKTREE} ] }' > $WORKSPACE_FILE

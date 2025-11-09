@@ -14,7 +14,7 @@ WORKSPACE_FILE=$(git config worktree-tools.workspace-file)
 git worktree add $WORKTREE -b $BRANCH
 
 jq --arg WORKTREE "$WORKTREE" --arg BRANCH "$BRANCH" \
-  '{folders: [ .folders[], {name: $BRANCH, path: $WORKSPACE } ] }' $WORKSPACE_FILE > $WORKSPACE_FILE.tmp
+  '{folders: [ .folders[], {name: $BRANCH, path: $WORKTREE } ] }' $WORKSPACE_FILE > $WORKSPACE_FILE.tmp
 mv $WORKSPACE_FILE.tmp $WORKSPACE_FILE
 
 cp -lfR $COMMON_FILES_DIR/* $WORKTREE/
