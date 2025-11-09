@@ -14,7 +14,7 @@ mkdir $DIRNAME
 
 cd $DIRNAME
 
-git clone --bare "REPO_URL" .bare
+git clone --bare $REPO_URL .bare
 echo "gitdir: ./.bare" > .git
 
 git config remove.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
