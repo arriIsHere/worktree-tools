@@ -2,8 +2,9 @@
 set -e
 
 REPO_URL=$1
-BASENAME=${REPO_URL##*/}
-DIRNAME=${2:~${BASENAME%.*}}
+REPO_BASE=${REPO_URL##*/}
+BASENAME=${REPO_BASE%.*}
+DIRNAME=${2:~BASENAME}
 
 # TODO: add flags to set these values
 COMMON_FILES_DIR=.common_files
