@@ -7,7 +7,7 @@ WORKTREE=$1
 ROOT_DIR=$(realpath $(git rev-parse --git-common-dir)/../)
 cd $ROOT_DIR
 
-BRANCH=$(cd $WORKTREE; git branch --show-current)
+BRANCH=$(git worktree list | grep "$WORKTREE" | awk '{ print $3 }' | tr -d '[]')
 
 WORKSPACE_FILE=$(git config worktree-tools.workspace-file)
 
@@ -15,7 +15,7 @@ WORKSPACE_FILE=$(git config worktree-tools.workspace-file)
 rm -rf $WORKTREE
 
 git worktree prune
-git branch -D $BRANCH
+#git branch -D $BRANCH
 
 # Update the workspace file
 jq --arg WORKTREE "$WORKTREE" 'del(.folders[] | select(.path == $WORKTREE)) | {folders: .[]}' $WORKSPACE_FILE > $WORKSPACE_FILE.tmp
