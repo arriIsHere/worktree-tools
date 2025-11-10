@@ -15,7 +15,7 @@ WORKSPACE_FILE=$(git config worktree-tools.workspace-file)
 rm -rf $WORKTREE
 
 git worktree prune
-#git branch -D $BRANCH
+git branch -D $BRANCH
 
 # Update the workspace file
 jq --arg WORKTREE "$WORKTREE" 'del(.folders[] | select(.path == $WORKTREE)) | {folders: .[]}' $WORKSPACE_FILE > $WORKSPACE_FILE.tmp
